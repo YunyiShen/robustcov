@@ -11,7 +11,7 @@
 #' @param maxit max iterations in finding nearest positive matrix
 #' @export
 nearPPSD <- function(X, eigenTol = 1e-06, convTol = 1e-07, psdTol = 1e-08, maxit = 1000L) {
-    .Call('_RobustOmega_nearPPSD', PACKAGE = 'RobustOmega', X, eigenTol, convTol, psdTol, maxit)
+    .Call(`_RobustOmega_nearPPSD`, X, eigenTol, convTol, psdTol, maxit)
 }
 
 #' @name covGKmat
@@ -21,7 +21,7 @@ nearPPSD <- function(X, eigenTol = 1e-06, convTol = 1e-07, psdTol = 1e-08, maxit
 #' @return a matrix with dimension p by p, GK estimator, note that it's not necessarily positive
 #' @export
 covGKmat <- function(data) {
-    .Call('_RobustOmega_covGKmat', PACKAGE = 'RobustOmega', data)
+    .Call(`_RobustOmega_covGKmat`, data)
 }
 
 #' @name corSpearmanmat
@@ -31,7 +31,7 @@ covGKmat <- function(data) {
 #' @return a matrix with dimension p by p of spearman correlations
 #' @export
 corSpearmanmat <- function(data) {
-    .Call('_RobustOmega_corSpearmanmat', PACKAGE = 'RobustOmega', data)
+    .Call(`_RobustOmega_corSpearmanmat`, data)
 }
 
 #' @name corKendallmat
@@ -41,7 +41,7 @@ corSpearmanmat <- function(data) {
 #' @return a matrix with dimension p by p, Kendall's tau
 #' @export
 corKendallmat <- function(data) {
-    .Call('_RobustOmega_corKendallmat', PACKAGE = 'RobustOmega', data)
+    .Call(`_RobustOmega_corKendallmat`, data)
 }
 
 #' @name corQuadrantmat
@@ -51,7 +51,7 @@ corKendallmat <- function(data) {
 #' @return a matrix with dimension p by p, Quadrant correlation coefficients
 #' @export
 corQuadrantmat <- function(data) {
-    .Call('_RobustOmega_corQuadrantmat', PACKAGE = 'RobustOmega', data)
+    .Call(`_RobustOmega_corQuadrantmat`, data)
 }
 
 #' @name covSpearmanUmat
@@ -61,7 +61,7 @@ corQuadrantmat <- function(data) {
 #' @return a matrix with dimension p by p of spearman correlations
 #' @export
 covSpearmanUmat <- function(data) {
-    .Call('_RobustOmega_covSpearmanUmat', PACKAGE = 'RobustOmega', data)
+    .Call(`_RobustOmega_covSpearmanUmat`, data)
 }
 
 #' @name covOGKmat
@@ -71,7 +71,7 @@ covSpearmanUmat <- function(data) {
 #' @return a matrix with dimension p by p, OGK estimator
 #' @export
 covOGKmat <- function(data) {
-    .Call('_RobustOmega_covOGKmat', PACKAGE = 'RobustOmega', data)
+    .Call(`_RobustOmega_covOGKmat`, data)
 }
 
 #' @name covNPDmat
@@ -85,7 +85,7 @@ covOGKmat <- function(data) {
 #' @return a matrix with dimension p by p, NPD estimator
 #' @export
 covNPDmat <- function(data, eigenTol = 1e-06, convTol = 1e-07, psdTol = 1e-08, maxit = 1000L) {
-    .Call('_RobustOmega_covNPDmat', PACKAGE = 'RobustOmega', data, eigenTol, convTol, psdTol, maxit)
+    .Call(`_RobustOmega_covNPDmat`, data, eigenTol, convTol, psdTol, maxit)
 }
 
 #' @name raltert
@@ -97,7 +97,7 @@ covNPDmat <- function(data, eigenTol = 1e-06, convTol = 1e-07, psdTol = 1e-08, m
 #' @return a matrix with dimension n by p, each row is a sample
 #' @export
 raltert <- function(n, Omega, nu) {
-    .Call('_RobustOmega_raltert', PACKAGE = 'RobustOmega', n, Omega, nu)
+    .Call(`_RobustOmega_raltert`, n, Omega, nu)
 }
 
 #' @name rmvt
@@ -109,7 +109,7 @@ raltert <- function(n, Omega, nu) {
 #' @return a matrix with dimension n by p, each row is a sample
 #' @export
 rmvt <- function(n, Omega, nu) {
-    .Call('_RobustOmega_rmvt', PACKAGE = 'RobustOmega', n, Omega, nu)
+    .Call(`_RobustOmega_rmvt`, n, Omega, nu)
 }
 
 #' @name rmvnorm
@@ -120,6 +120,6 @@ rmvt <- function(n, Omega, nu) {
 #' @return a matrix with dimension n by p, each row is a sample
 #' @export
 rmvnorm <- function(n, Omega) {
-    .Call('_RobustOmega_rmvnorm', PACKAGE = 'RobustOmega', n, Omega)
+    .Call(`_RobustOmega_rmvnorm`, n, Omega)
 }
 
