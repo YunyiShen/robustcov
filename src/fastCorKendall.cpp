@@ -50,10 +50,12 @@
 #include <R_ext/Utils.h>  /* For R_rsort. */
 #include "fastCorKendall.h"
 
+
 using namespace Rcpp;
 using namespace arma;
 using namespace std;
 
+// [[Rcpp::depends(RcppArmadillo)]]
 
 /* Sorts in place, returns the bubble sort distance between the input array
  * and the sorted array.

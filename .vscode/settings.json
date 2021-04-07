@@ -1,5 +1,7 @@
 {
     "files.associations": {
-        "armadillo": "cpp"
+        "*.rmd": "markdown",
+        "armadillo": "cpp",
+        "complex": "cpp"
     }
 }

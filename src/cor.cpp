@@ -5,6 +5,8 @@ using namespace Rcpp;
 using namespace arma;
 using namespace std;
 
+// this is the megic number 1/(\Phi^{-1}(0.75))
+const double invphiinv_75 =  1.482602; 
 
 // --------------------
 // Gnanadesikan-Kettenring estimator
@@ -24,16 +26,20 @@ double covGK(const vec & x, const vec & y){
 // Qn estimator for scale
 // --------------------
 
+
 double scaleQn(const vec & x){
 	int n = x.n_elem;
 	int k = R::choose(floor(n/2)+1, 2); // kth order statistics
-	uvec upp_ind = arma::trimatu_ind( size(n,n),1); // upper tri index
+	//int k = floor(R::choose(n,2)/4);
+	//Rcout << k << endl;
+	uvec upp_ind = arma::trimatu_ind( arma::size(n,n),1); // upper tri index
 	arma::mat temp = x * arma::ones(1,n); // copy by column
 	arma::vec dist = temp(upp_ind); // take only upper triangular part
 	temp = temp.t(); // transpose, so copy by row
 	dist -= temp(upp_ind); // calculate distance
 	dist = arma::sort(arma::abs(dist)); // sort
-	return(dist(k));// kth distance
+	//Rcout << dist << endl;
+	return(2.2219 * dist(k));// kth distance, the magic number d is 2.2219 according to Rousseeuw, P. J. and Croux, C. (1993). Alternatives to the median absolute deviation. J. Amer. Statist. Assoc. 88 1273–1283. 
 }
 
 
@@ -46,7 +52,7 @@ double covQn(const vec & x, const vec & y){
 	vec pMinus = x - y; 
 	double sigma_plus = scaleQn(pPlus);
 	double sigma_minus = scaleQn(pMinus);
-	return(sigma_plus * sigma_plus - sigma_minus * sigma_minus);
+	return((sigma_plus * sigma_plus - sigma_minus * sigma_minus)/4);
 	
 }
 
@@ -57,9 +63,9 @@ double covQn(const vec & x, const vec & y){
 // --------------------
 
 double scaleMAD(vec x){// make a copy, so that we can substract 
-	x -= median(x); 
+	x -= arma::median(x); 
 	x = arma::abs(x);
-	return(median(x));
+	return(invphiinv_75 * arma::median(x));
 }
 
 
@@ -163,7 +169,7 @@ double corKendall(const vec& x, const vec& y) {
 double corQuadrant(const vec& x, const vec& y) {
 	const uword n = x.n_elem;
 	// count number of observations in 1./3. and 2./4. quadrants, respectively
-	double medX = median(x), medY = median(y);
+	double medX = arma::median(x), medY = arma::median(y);
 	sword onethree = 0, twofour = 0;
 	for(uword i = 0; i < n; i++) {
 		// this should be numerically stable

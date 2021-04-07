@@ -11,6 +11,8 @@ using namespace Rcpp;
 using namespace arma;
 using namespace std;
 
+// [[Rcpp::depends(RcppArmadillo)]]
+
 // functions to be used within C++
 double covGK(const vec & x, const vec & y);
 double scaleQn(const vec & x);

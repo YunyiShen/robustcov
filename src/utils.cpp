@@ -4,13 +4,17 @@
 using namespace Rcpp;
 using namespace arma;
 using namespace std;
+// [[Rcpp::depends(RcppArmadillo)]]
 
+
+// this is the megic number 1/(\Phi^{-1}(0.75))
+const double invphiinv_75 =  1.482602; 
 // calculate MAD in matrix form
 arma::vec MAD_cpp(arma::mat data)
 { // we are gonna modify this object, so make a copy
 	arma::rowvec med = arma::median(data);
 	data.each_row() -= med;		  //minus the median at each row
-	data = abs(data);			  // take absolute value
+	data = invphiinv_75 * abs(data);			  // take absolute value
 	return (trans(median(data))); // take median again
 }
 
@@ -40,3 +44,4 @@ arma::vec rank_cpp(const vec &x)
 	// return ranks
 	return ranks;
 }
+

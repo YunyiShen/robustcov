@@ -1,16 +1,25 @@
-/*
- Core or calculating all these correlation coefficients, will basically all returns 
- a corremation matrix
-*/
 
+#define ARMA_NO_DEBUG
+#include <RcppArmadillo.h>
 #include "cor.h"
-#include "utils.h"
-#include "fastCorKendall.h"
 #include "NPD_proj.h"
+#include "fastCorKendall.h"
+#include "utils.h"
+
+using namespace Rcpp;
+using namespace arma;
+using namespace std;
 // [[Rcpp::depends(RcppArmadillo)]]
 
 // this is the megic number 1/(\Phi^{-1}(0.75))
-const double invphiinv_75 =  1.482602; 
+//const double invphiinv_75 =  1.482602; 
+
+/*
+ Core of calculating all these correlation coefficients, will basically all returns 
+ a correlation or covariance matrix
+*/
+
+
 
 // --------------------
 // Gnanadesikan-Kettenring estimator
@@ -22,7 +31,6 @@ const double invphiinv_75 =  1.482602;
 // ' @return a matrix with dimension p by p, GK estimator, note that it's not necessarily positive
 // ' @export
 // [[Rcpp::export]]
-
 arma::mat covGKmat(const arma::mat & data){
     int p = data.n_cols;
     mat res(p,p, arma::fill::zeros);
@@ -31,7 +39,7 @@ arma::mat covGKmat(const arma::mat & data){
             res(i,j) = covGK(data.col(i),data.col(j));
         }
     }
-    symmatu(res);
+    res = arma::symmatu(res);
     vec MAD = MAD_cpp(data);
     res.diag() += MAD % MAD;
     return(res);
@@ -48,7 +56,6 @@ arma::mat covGKmat(const arma::mat & data){
 // ' @return a matrix with dimension p by p of spearman correlations
 // ' @export
 // [[Rcpp::export]]
-
 arma::mat corSpearmanmat(const arma::mat & data){
     int p = data.n_cols;
     mat res(p,p, arma::fill::zeros);
@@ -57,7 +64,7 @@ arma::mat corSpearmanmat(const arma::mat & data){
             res(i,j) = corSpearman(data.col(i),data.col(j));
         }
     }
-    symmatu(res);
+    res = arma::symmatu(res);
     res.diag() += 1;
     return(res);
 }
@@ -73,7 +80,6 @@ arma::mat corSpearmanmat(const arma::mat & data){
 // ' @return a matrix with dimension p by p, Kendall's tau
 // ' @export
 // [[Rcpp::export]]
-
 arma::mat corKendallmat(const arma::mat & data){
     int p = data.n_cols;
     mat res(p,p, arma::fill::zeros);
@@ -82,7 +88,7 @@ arma::mat corKendallmat(const arma::mat & data){
             res(i,j) = corKendall(data.col(i),data.col(j));
         }
     }
-    symmatu(res);
+    res = arma::symmatu(res);
     res.diag() += 1;
     return(res);
 }
@@ -97,7 +103,6 @@ arma::mat corKendallmat(const arma::mat & data){
 // ' @return a matrix with dimension p by p, Quadrant correlation coefficients
 // ' @export
 // [[Rcpp::export]]
-
 arma::mat corQuadrantmat(const arma::mat & data){
     int p = data.n_cols;
     mat res(p,p, arma::fill::zeros);
@@ -106,7 +111,7 @@ arma::mat corQuadrantmat(const arma::mat & data){
             res(i,j) = corQuadrant(data.col(i),data.col(j));
         }
     }
-    symmatu(res);
+    res = arma::symmatu(res);
     res.diag() += 1;
     return(res);
 }
@@ -122,17 +127,16 @@ arma::mat corQuadrantmat(const arma::mat & data){
 // ' @return a matrix with dimension p by p of spearman correlations
 // ' @export
 // [[Rcpp::export]]
-
 arma::mat covSpearmanUmat(const arma::mat & data){
     int p = data.n_cols;
     mat res(p,p, arma::fill::zeros);
-    vec MADscale = invphiinv_75 * MAD_cpp(data);
+    vec MADscale = MAD_cpp(data);
     for(int i = 0 ; i < p-1 ; i++){
         for(int j = i + 1 ; j < p ; j++){ // upper triangular
             res(i,j) = corSpearman(data.col(i),data.col(j)) * MADscale(i) * MADscale(j);
         }
     }
-    symmatu(res);
+    res = arma::symmatu(res);
     res.diag() += MADscale % MADscale;
     return(res);
 }
@@ -149,7 +153,6 @@ arma::mat covSpearmanUmat(const arma::mat & data){
 // ' @return a matrix with dimension p by p, OGK estimator
 // ' @export
 // [[Rcpp::export]]
-
 arma::mat covOGKmat(const arma::mat & data){ 
     int p = data.n_cols;
     mat res(p,p, arma::fill::zeros);
@@ -192,10 +195,9 @@ arma::mat covOGKmat(const arma::mat & data){
 // ' @param convTol tolerance in cov, used in finding nearest positive matrix
 // ' @param psdTol tolerance in psd, used in finding nearest positive matrix
 // ' @param maxit max iterations in finding nearest positive matrix
-// ' @return a matrix with dimension p by p, GK estimator
+// ' @return a matrix with dimension p by p, NPD estimator
 // ' @export
 // [[Rcpp::export]]
-
 arma::mat covNPDmat(const arma::mat & data, const float eigenTol = 1e-06, const float convTol = 1e-07, 
              const float psdTol = 1e-08, const int maxit = 1000){
     int p = data.n_cols;
@@ -205,7 +207,7 @@ arma::mat covNPDmat(const arma::mat & data, const float eigenTol = 1e-06, const 
             res(i,j) = covQn(data.col(i),data.col(j));
         }
     }
-    symmatu(res);
+    res = arma::symmatu(res);
     vec Qn(p); 
     for(int i = 0; i < p; i++){
         Qn(i) = scaleQn(data.col(i)); 
