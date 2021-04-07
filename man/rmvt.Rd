@@ -3,6 +3,9 @@
 \name{rmvt}
 \alias{rmvt}
 \title{Multivariate t distribution}
+\usage{
+rmvt(n, Omega, nu)
+}
 \arguments{
 \item{n}{sample size}
 

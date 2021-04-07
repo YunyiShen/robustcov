@@ -30,6 +30,7 @@ using namespace std;
 //' @description This routine calculates the Gnanadesikan-Kettenring estimator, diagonal will be MAD
 //' @param data the n by p raw data matrix
 //' @return a matrix with dimension p by p, GK estimator, note that it's not necessarily positive
+//' @examples covGKmat(matrix(rnorm(500),100,5)) 
 //' @export
 // [[Rcpp::export]]
 arma::mat covGKmat(const arma::mat & data){
@@ -56,6 +57,7 @@ arma::mat covGKmat(const arma::mat & data){
 //' @description This routine calculates the Spearman correlation
 //' @param data the n by p raw data matrix
 //' @return a matrix with dimension p by p of spearman correlations
+//' @examples corSpearmanmat(matrix(rnorm(500),100,5)) 
 //' @export
 // [[Rcpp::export]]
 arma::mat corSpearmanmat(const arma::mat & data){
@@ -81,6 +83,7 @@ arma::mat corSpearmanmat(const arma::mat & data){
 //' @description This routine calculates the Kendall's tau
 //' @param data the n by p raw data matrix
 //' @return a matrix with dimension p by p, Kendall's tau
+//' @examples corKendallmat(matrix(rnorm(500),100,5)) 
 //' @export
 // [[Rcpp::export]]
 arma::mat corKendallmat(const arma::mat & data){
@@ -105,6 +108,7 @@ arma::mat corKendallmat(const arma::mat & data){
 //' @description This routine calculates Quadrant correlation coefficients
 //' @param data the n by p raw data matrix
 //' @return a matrix with dimension p by p, Quadrant correlation coefficients
+//' @examples corQuadrantmat(matrix(rnorm(500),100,5)) 
 //' @export
 // [[Rcpp::export]]
 arma::mat corQuadrantmat(const arma::mat & data){
@@ -130,6 +134,7 @@ arma::mat corQuadrantmat(const arma::mat & data){
 //' @description This routine calculates the SpearmanU, the pairwise covariance matrix estimator proposed in Oellererand Croux
 //' @param data the n by p raw data matrix
 //' @return a matrix with dimension p by p of spearman correlations
+//' @examples covSpearmanUmat(matrix(rnorm(500),100,5)) 
 //' @export
 // [[Rcpp::export]]
 arma::mat covSpearmanUmat(const arma::mat & data){
@@ -149,14 +154,15 @@ arma::mat covSpearmanUmat(const arma::mat & data){
 
 
 // --------------------
-// orthogonalized Gnanadesikan–Kettenring
+// orthogonalized Gnanadesikan-Kettenring
 // --------------------
 
 //' @name covOGKmat
-//' @title Orthogonalized Gnanadesikan–Kettenring (OGK) estimator for *covariance*
-//' @description This routine calculates the Orthogonalized Gnanadesikan–Kettenring (OGK) estimator for *covariance*, using scale estimation of Gn, as in Maronna and Zamar
+//' @title Orthogonalized Gnanadesikan-Kettenring (OGK) estimator for *covariance*
+//' @description This routine calculates the Orthogonalized Gnanadesikan-Kettenring (OGK) estimator for *covariance*, using scale estimation of Gn, as in Maronna and Zamar
 //' @param data the n by p raw data matrix
 //' @return a matrix with dimension p by p, OGK estimator
+//' @examples covOGKmat(matrix(rnorm(500),100,5)) 
 //' @export
 // [[Rcpp::export]]
 arma::mat covOGKmat(const arma::mat & data){ 
@@ -203,6 +209,7 @@ arma::mat covOGKmat(const arma::mat & data){
 //' @param psdTol tolerance in psd, used in finding nearest positive matrix
 //' @param maxit max iterations in finding nearest positive matrix
 //' @return a matrix with dimension p by p, NPD estimator
+//' @examples covNPDmat(matrix(rnorm(500),100,5)) 
 //' @export
 // [[Rcpp::export]]
 arma::mat covNPDmat(const arma::mat & data, const float eigenTol = 1e-06, const float convTol = 1e-07, 

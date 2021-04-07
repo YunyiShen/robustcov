@@ -15,3 +15,6 @@ a matrix with dimension p by p, Kendall's tau
 \description{
 This routine calculates the Kendall's tau
 }
+\examples{
+corKendallmat(matrix(rnorm(500),100,5)) 
+}

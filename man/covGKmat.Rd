@@ -15,3 +15,6 @@ a matrix with dimension p by p, GK estimator, note that it's not necessarily pos
 \description{
 This routine calculates the Gnanadesikan-Kettenring estimator, diagonal will be MAD
 }
+\examples{
+covGKmat(matrix(rnorm(500),100,5)) 
+}

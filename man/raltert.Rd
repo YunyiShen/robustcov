@@ -3,6 +3,9 @@
 \name{raltert}
 \alias{raltert}
 \title{Alternative multivariate t distribution}
+\usage{
+raltert(n, Omega, nu)
+}
 \arguments{
 \item{n}{sample size}
 

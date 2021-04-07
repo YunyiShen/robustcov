@@ -3,6 +3,15 @@
 \name{covNPDmat}
 \alias{covNPDmat}
 \title{NPD estimator for *covariance* based on Qn}
+\usage{
+covNPDmat(
+  data,
+  eigenTol = 1e-06,
+  convTol = 1e-07,
+  psdTol = 1e-08,
+  maxit = 1000L
+)
+}
 \arguments{
 \item{data}{the n by p raw data matrix}
 
@@ -19,4 +28,7 @@ a matrix with dimension p by p, NPD estimator
 }
 \description{
 This routine calculates the NPD estimator for *covariance* based on Qn
+}
+\examples{
+covNPDmat(matrix(rnorm(500),100,5)) 
 }

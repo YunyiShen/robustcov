@@ -3,6 +3,9 @@
 \name{rmvnorm}
 \alias{rmvnorm}
 \title{Multivariate normal distribution with 0 mean}
+\usage{
+rmvnorm(n, Omega)
+}
 \arguments{
 \item{n}{sample size}
 

@@ -2,7 +2,10 @@
 % Please edit documentation in R/RcppExports.R
 \name{covOGKmat}
 \alias{covOGKmat}
-\title{Orthogonalized Gnanadesikan–Kettenring (OGK) estimator for *covariance*}
+\title{Orthogonalized Gnanadesikan-Kettenring (OGK) estimator for *covariance*}
+\usage{
+covOGKmat(data)
+}
 \arguments{
 \item{data}{the n by p raw data matrix}
 }
@@ -10,5 +13,8 @@
 a matrix with dimension p by p, OGK estimator
 }
 \description{
-This routine calculates the Orthogonalized Gnanadesikan–Kettenring (OGK) estimator for *covariance*, using scale estimation of Gn, as in Maronna and Zamar
+This routine calculates the Orthogonalized Gnanadesikan-Kettenring (OGK) estimator for *covariance*, using scale estimation of Gn, as in Maronna and Zamar
+}
+\examples{
+covOGKmat(matrix(rnorm(500),100,5)) 
 }

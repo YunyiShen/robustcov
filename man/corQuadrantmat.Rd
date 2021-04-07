@@ -15,3 +15,6 @@ a matrix with dimension p by p, Quadrant correlation coefficients
 \description{
 This routine calculates Quadrant correlation coefficients
 }
+\examples{
+corQuadrantmat(matrix(rnorm(500),100,5)) 
+}

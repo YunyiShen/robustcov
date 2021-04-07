@@ -15,3 +15,6 @@ a matrix with dimension p by p of spearman correlations
 \description{
 This routine calculates the SpearmanU, the pairwise covariance matrix estimator proposed in Oellererand Croux
 }
+\examples{
+covSpearmanUmat(matrix(rnorm(500),100,5)) 
+}

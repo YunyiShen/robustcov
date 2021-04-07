@@ -15,3 +15,6 @@ a matrix with dimension p by p of spearman correlations
 \description{
 This routine calculates the Spearman correlation
 }
+\examples{
+corSpearmanmat(matrix(rnorm(500),100,5)) 
+}
