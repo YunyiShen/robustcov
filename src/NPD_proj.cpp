@@ -3,6 +3,8 @@
 
 #include "NPD_proj.h"
 // [[Rcpp::depends(RcppArmadillo)]]
+using namespace Rcpp;
+using namespace arma;
 
 mat ProjPattern(mat X, const mat X0, const vec un) {
   uvec idx;
@@ -23,15 +25,17 @@ mat ProjPSD(const mat R, const int n, const float eigenTol) {
   return eigvec * diagmat(eigval(p)) * eigvec.t();
 }
 
-// ' nearest positive semi-definite projection of a matrix
-// ' This routine calculate the nearest positive semi0definite projection
-// ' @param X the matrix
-// ' @param eigenTol tolerance in eigen system, used in finding nearest positive matrix
-// ' @param convTol tolerance in cov, used in finding nearest positive matrix
-// ' @param psdTol tolerance in psd, used in finding nearest positive matrix
-// ' @param maxit max iterations in finding nearest positive matrix
+//' @name nearPPSD
+//' @title nearest positive semi-definite projection of a matrix
+//' @description This routine calculate the nearest positive semi0definite projection
+//' @param X the matrix
+//' @param eigenTol tolerance in eigen system, used in finding nearest positive matrix
+//' @param convTol tolerance in cov, used in finding nearest positive matrix
+//' @param psdTol tolerance in psd, used in finding nearest positive matrix
+//' @param maxit max iterations in finding nearest positive matrix
+//' @export
 // [[Rcpp::export]]
-mat nearPPSD(mat X, const float eigenTol = 1e-06, const float convTol = 1e-07, 
+arma::mat nearPPSD(arma::mat X, const float eigenTol = 1e-06, const float convTol = 1e-07, 
              const float psdTol = 1e-08, const int maxit = 1000) {
   const int n = X.n_cols;
   const mat X0 = X;

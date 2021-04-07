@@ -25,11 +25,12 @@ using namespace std;
 // Gnanadesikan-Kettenring estimator
 // --------------------
 
-// ' Gnanadesikan-Kettenring estimator for *covariance*
-// ' This routine calculate the Gnanadesikan-Kettenring estimator, diagonal will be MAD
-// ' @param data the n by p raw data matrix
-// ' @return a matrix with dimension p by p, GK estimator, note that it's not necessarily positive
-// ' @export
+//' @name covGKmat
+//' @title Gnanadesikan-Kettenring estimator for *covariance*
+//' @description This routine calculates the Gnanadesikan-Kettenring estimator, diagonal will be MAD
+//' @param data the n by p raw data matrix
+//' @return a matrix with dimension p by p, GK estimator, note that it's not necessarily positive
+//' @export
 // [[Rcpp::export]]
 arma::mat covGKmat(const arma::mat & data){
     int p = data.n_cols;
@@ -50,11 +51,12 @@ arma::mat covGKmat(const arma::mat & data){
 // Spearman
 // --------------------
 
-// ' Spearman correlation
-// ' This routine calculate the Spearman correlation
-// ' @param data the n by p raw data matrix
-// ' @return a matrix with dimension p by p of spearman correlations
-// ' @export
+//' @name corSpearmanmat
+//' @title Spearman correlation
+//' @description This routine calculates the Spearman correlation
+//' @param data the n by p raw data matrix
+//' @return a matrix with dimension p by p of spearman correlations
+//' @export
 // [[Rcpp::export]]
 arma::mat corSpearmanmat(const arma::mat & data){
     int p = data.n_cols;
@@ -74,11 +76,12 @@ arma::mat corSpearmanmat(const arma::mat & data){
 // Kendall's tau
 // --------------------
 
-// ' Kendall's tau
-// ' This routine calculate the Kendall's tau
-// ' @param data the n by p raw data matrix
-// ' @return a matrix with dimension p by p, Kendall's tau
-// ' @export
+//' @name corKendallmat
+//' @title Kendall's tau
+//' @description This routine calculates the Kendall's tau
+//' @param data the n by p raw data matrix
+//' @return a matrix with dimension p by p, Kendall's tau
+//' @export
 // [[Rcpp::export]]
 arma::mat corKendallmat(const arma::mat & data){
     int p = data.n_cols;
@@ -97,11 +100,12 @@ arma::mat corKendallmat(const arma::mat & data){
 // Quadrant correlation coefficients
 // --------------------
 
-// ' corQuadrant
-// ' This routine calculate Quadrant correlation coefficients
-// ' @param data the n by p raw data matrix
-// ' @return a matrix with dimension p by p, Quadrant correlation coefficients
-// ' @export
+//' @name corQuadrantmat
+//' @title Quadrant correlation coefficients
+//' @description This routine calculates Quadrant correlation coefficients
+//' @param data the n by p raw data matrix
+//' @return a matrix with dimension p by p, Quadrant correlation coefficients
+//' @export
 // [[Rcpp::export]]
 arma::mat corQuadrantmat(const arma::mat & data){
     int p = data.n_cols;
@@ -121,11 +125,12 @@ arma::mat corQuadrantmat(const arma::mat & data){
 // SpearmanU estimator for *covariance*
 // --------------------
 
-// ' SpearmanU estimator for *covariance*
-// ' This routine calculate the SpearmanU, the pairwise covariance matrix estimator proposed in Oellererand Croux
-// ' @param data the n by p raw data matrix
-// ' @return a matrix with dimension p by p of spearman correlations
-// ' @export
+//' @name covSpearmanUmat
+//' @title SpearmanU estimator for *covariance*
+//' @description This routine calculates the SpearmanU, the pairwise covariance matrix estimator proposed in Oellererand Croux
+//' @param data the n by p raw data matrix
+//' @return a matrix with dimension p by p of spearman correlations
+//' @export
 // [[Rcpp::export]]
 arma::mat covSpearmanUmat(const arma::mat & data){
     int p = data.n_cols;
@@ -147,11 +152,12 @@ arma::mat covSpearmanUmat(const arma::mat & data){
 // orthogonalized Gnanadesikan–Kettenring
 // --------------------
 
-// ' Orthogonalized Gnanadesikan–Kettenring (OGK) estimator for *covariance*
-// ' This routine calculate the Orthogonalized Gnanadesikan–Kettenring (OGK) estimator for *covariance*, using scale estimation of Gn, as in Maronna and Zamar
-// ' @param data the n by p raw data matrix
-// ' @return a matrix with dimension p by p, OGK estimator
-// ' @export
+//' @name covOGKmat
+//' @title Orthogonalized Gnanadesikan–Kettenring (OGK) estimator for *covariance*
+//' @description This routine calculates the Orthogonalized Gnanadesikan–Kettenring (OGK) estimator for *covariance*, using scale estimation of Gn, as in Maronna and Zamar
+//' @param data the n by p raw data matrix
+//' @return a matrix with dimension p by p, OGK estimator
+//' @export
 // [[Rcpp::export]]
 arma::mat covOGKmat(const arma::mat & data){ 
     int p = data.n_cols;
@@ -188,15 +194,16 @@ arma::mat covOGKmat(const arma::mat & data){
 // NPD estimator
 // --------------------
 
-// ' NPD estimator for *covariance* based on Qn 
-// ' This routine calculate the NPD estimator for *covariance* based on Qn
-// ' @param data the n by p raw data matrix
-// ' @param eigenTol tolerance in eigen system, used in finding nearest positive matrix
-// ' @param convTol tolerance in cov, used in finding nearest positive matrix
-// ' @param psdTol tolerance in psd, used in finding nearest positive matrix
-// ' @param maxit max iterations in finding nearest positive matrix
-// ' @return a matrix with dimension p by p, NPD estimator
-// ' @export
+//' @name covNPDmat
+//' @title NPD estimator for *covariance* based on Qn 
+//' @description This routine calculates the NPD estimator for *covariance* based on Qn
+//' @param data the n by p raw data matrix
+//' @param eigenTol tolerance in eigen system, used in finding nearest positive matrix
+//' @param convTol tolerance in cov, used in finding nearest positive matrix
+//' @param psdTol tolerance in psd, used in finding nearest positive matrix
+//' @param maxit max iterations in finding nearest positive matrix
+//' @return a matrix with dimension p by p, NPD estimator
+//' @export
 // [[Rcpp::export]]
 arma::mat covNPDmat(const arma::mat & data, const float eigenTol = 1e-06, const float convTol = 1e-07, 
              const float psdTol = 1e-08, const int maxit = 1000){

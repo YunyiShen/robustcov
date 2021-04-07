@@ -221,8 +221,7 @@ double kendallNlogN(double* arr1, double* arr2, size_t len, int cor) {
 
 
 // wrapper for arma data structures
-// [[Rcpp::export]]
-double fastCorKendall(const vec& x, const vec& y, const uword & n) {
+double fastCorKendall(const arma::vec& x, const arma::vec& y, const arma::uword & n) {
 	// order observations according to first vector
 	uvec orderX = sort_index(x);
 //	// copy the data in the right order into double arrays

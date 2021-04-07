@@ -1,19 +1,18 @@
 #include <RcppArmadillo.h>
-
-
+// [[Rcpp::depends(RcppArmadillo)]]
 using namespace Rcpp;
 using namespace arma;
 using namespace std;
-// [[Rcpp::depends(RcppArmadillo)]]
 
 
-// ' Alternative multivariate t-distribution
-// ' This routine samples alternative multivarate t-distribution
-// ' @param n sample size
-// ' @param Omega precision matrix of dimension p by p (not covariance)
-// ' @param nu degree of freedom
-// ' @return a matrix with dimension n by p, each row is a sample
-// ' @export
+//' @name raltert
+//' @title Alternative multivariate t distribution
+//' @description This routine samples alternative multivarate t distribution
+//' @param n sample size
+//' @param Omega **precision** matrix of dimension p by p 
+//' @param nu degree of freedom
+//' @return a matrix with dimension n by p, each row is a sample
+//' @export
 // [[Rcpp::export]]
 arma::mat raltert(int n, const arma::mat & Omega, int nu){
 	mat L = chol(Omega); 
@@ -25,14 +24,14 @@ arma::mat raltert(int n, const arma::mat & Omega, int nu){
     return(res.t());
 }
 
-
-// ' Multivariate t-distribution
-// ' This routine samples multivarate t-distribution
-// ' @param n sample size
-// ' @param Omega precision matrix of dimension p by p (not covariance)
-// ' @param nu degree of freedom
-// ' @return a matrix with dimension n by p, each row is a sample
-// ' @export
+//' @name rmvt
+//' @title Multivariate t distribution
+//' @description This routine samples multivarate t distribution
+//' @param n sample size
+//' @param Omega **precision** matrix of dimension p by p 
+//' @param nu degree of freedom
+//' @return a matrix with dimension n by p, each row is a sample
+//' @export
 // [[Rcpp::export]]
 arma::mat rmvt(int n, const arma::mat & Omega, int nu){
 	mat L = chol(Omega); 
@@ -45,12 +44,14 @@ arma::mat rmvt(int n, const arma::mat & Omega, int nu){
 }
 
 
-// ' Multivariate normal distribution with 0 mean
-// ' This routine samples multivarate normal distribution of mean 0 from precision matrix
-// ' @param n sample size
-// ' @param Omega precision matrix of dimension p by p (not covariance)
-// ' @return a matrix with dimension n by p, each row is a sample
-// ' @export
+
+//' @name rmvnorm
+//' @title Multivariate normal distribution with 0 mean
+//' @description This routine samples multivarate normal distribution of mean 0 from precision matrix
+//' @param n sample size
+//' @param Omega **precision** matrix of dimension p by p 
+//' @return a matrix with dimension n by p, each row is a sample
+//' @export
 // [[Rcpp::export]]
 arma::mat rmvnorm(int n, const arma::mat & Omega){
 	mat L = chol(Omega); 
@@ -59,3 +60,4 @@ arma::mat rmvnorm(int n, const arma::mat & Omega){
     arma::solve(res, L, res);
     return(res.t());
 }
+

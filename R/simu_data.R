@@ -1,12 +1,12 @@
-# ' Sample contaminated normal 
-# ' sample normal distribution with normal contamination
-# ' @param n samplesize
-# ' @param Omega precision matrix of the normal 
-# ' @param byrow whether the comtamination happened by row? FALSE stand for cellwise
-# ' @param cont_rate how many cells/rows are contaminated?
-# ' @param mu mean of the contamination
-# ' @param sd standard deviation of the contamination 
-# ' @export
+#' @title Sample contaminated normal 
+#' @description This function samples normal distribution with normal contamination
+#' @param n samplesize
+#' @param Omega precision matrix of the normal 
+#' @param byrow whether the comtamination happened by row? FALSE stand for cellwise
+#' @param cont_rate how many cells/rows are contaminated?
+#' @param mu mean of the contamination
+#' @param sd standard deviation of the contamination 
+#' @export
 conta_normal <- function(n, Omega, byrow = FALSE,
                         cont_rate = 0.05, 
                         mu = 10, sd = sqrt(0.2)){
