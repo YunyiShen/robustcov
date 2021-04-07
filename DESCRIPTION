@@ -1,0 +1,12 @@
+Package: RobustOmega
+Type: Package
+Title: Robust precision matrix estimation under epsilon-contamination
+Version: 1.0
+Date: 2021-04-06
+Author: Yunyi Shen
+Maintainer: Yunyi Shen <yyshen@pku.edu.cn>
+Description: This package replicate methods in High-dimensional robust precision
+matrix estimation: Cellwise corruption under epsilon-contamination
+License: GPL-3
+Imports: Rcpp (>= 1.0.6)
+LinkingTo: Rcpp, RcppArmadillo
