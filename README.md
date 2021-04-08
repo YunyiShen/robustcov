@@ -21,4 +21,37 @@ rho
 - `covOGKmat`: Orthogonalized Gnanadesikan-Kettenring (OGK) estimator by Maronna, R. A. and Zamar, R. H. (2002)
 - `covNPDmat`: Nearest Positive (semi)-Definite projection of the pairwise covariance matrix estimator considered in Tarr et al. (2015). 
 
-P.-L. Loh and X. L. Tan. (2018) then used these robust estimates in Graphical Lasso (package `glasso`) or Quadratic Approximation (package `QUIC`) to obtain sparse solutions to precision matrix
+P.-L. Loh and X. L. Tan. (2018) then used these robust estimates in Graphical Lasso (package `glasso`) or Quadratic Approximation (package `QUIC`) to obtain sparse solutions to precision matrix.
+
+However, we have `QUIC` lost its support on CRAN, there is a branch on GitHub namely `CRAN/QUIC` still available to be installed.
+
+## Simulations
+
+I will install the package to use all the routines implemented. 
+
+The simulations are on reconstruction of precision matrix using different robust covariance estimators fed into `glasso` and `Tiger`. 
+
+The simulation codes are in `./simulation` while all other codes are similar to an R package. 
+
+Several main things are considered:
+**Graph Structure**
+
+- Banded: Basically an AR(1) model
+- Sparse: Sparse, with all entries positive
+- Dense: Well, a dense matrix
+
+They are all implemented in `./R/graph_generator.R`
+
+**Generating distribution**
+
+- Contaminated normal: normal with a normal contamination, in `./R/simu_data`
+- Multivariate t: just multi-variate t, implemented in C++, `./src/t_distns.cpp`
+- Alternative t: similar to multivariate t, but the scaling chi_sq distribution is different to each dimension, also in C++
+
+**Algorithm**
+
+As described above
+
+## Message to repeater
+
+I suggest not dealling with the implementations in C++ if you are not comfortable with it, several robust estimators are also implemented in base R or package `ccaPP`. I will try to claim my implementation is in C++ rather than R so you might be able to still use R. If you are a matlab user, read the documentation of C++ library `armadillo`, majority of the functions I used can be directly translated into matlab. Sorry I am not familiar to other options. 
