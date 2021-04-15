@@ -5,8 +5,8 @@ library(flare) # for Tiger
 library(QUIC) # for Glasso
 library(RobustOmega) # robust covariances implemented and wrapper for QUIC
 # for the performace evaluation function
-source("./R/misc.R")
-source("./R/graph_generator.R")
+source("./simulation/misc.R")
+source("./simulation/graph_generator.R")
 source("./simulation/cont_norm.R") # contaimanted norm
 
 results_file <- "./simulation/Res/res1.csv"
