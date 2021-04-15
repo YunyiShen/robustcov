@@ -22,3 +22,11 @@ rho
 - `covNPDmat`: Nearest Positive (semi)-Definite projection of the pairwise covariance matrix estimator considered in Tarr et al. (2015). 
 
 P.-L. Loh and X. L. Tan. (2018) then used these robust estimates in Graphical Lasso (package `glasso`) or Quadratic Approximation (package `QUIC`) to obtain sparse solutions to precision matrix
+
+With `QUIC`, a function `robQUIC` stand for robust QUIC is implmented. It has build in cross validation described in P.-L. Loh and X. L. Tan. (2018), for instance, to use the method with cross validation:
+
+```r
+robQUIC(data=matrix(rnorm(100),20,5), covest = cov,CV=TRUE)
+```
+
+Where `data` should be a matrix and `covest` should be a function that estimate the covariance e.g. anyone mentioned above. The result list contains everything from `QUIC` output with the optimal tuning parameter found by cross validation. One can also decide fold by setting `fold` in `robQUIC`. For more details see `?robQUIC`.  
