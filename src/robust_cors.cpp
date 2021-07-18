@@ -189,8 +189,9 @@ arma::mat covOGKmat(const arma::mat & data){
     vec Gamma(p); 
     for(int i = 0; i < p; i++){
         Gamma(i) = scaleQn(Z.col(i)); 
+        Gamma(i) *= Gamma(i);
     }
-    Gamma %= Gamma; 
+    //Gamma %= Gamma; 
 
     res = A * diagmat(Gamma) * A.t();
     return(res);
