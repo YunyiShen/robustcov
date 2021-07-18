@@ -6,6 +6,11 @@
 
 using namespace Rcpp;
 
+#ifdef RCPP_USE_GLOBAL_ROSTREAM
+Rcpp::Rostream<true>&  Rcpp::Rcout = Rcpp::Rcpp_cout_get();
+Rcpp::Rostream<false>& Rcpp::Rcerr = Rcpp::Rcpp_cerr_get();
+#endif
+
 // nearPPSD
 arma::mat nearPPSD(arma::mat X, const float eigenTol, const float convTol, const float psdTol, const int maxit);
 RcppExport SEXP _RobustOmega_nearPPSD(SEXP XSEXP, SEXP eigenTolSEXP, SEXP convTolSEXP, SEXP psdTolSEXP, SEXP maxitSEXP) {

@@ -1,7 +1,6 @@
 # RobustOmega
 Robust precision matrix estimation, an R package generated from final project of STAT 760 at UW Madison in Spring 2021. Based on the review of P.-L. Loh and X. L. Tan. (2018)
 
-There are two branches, namely `master` and `simulation`. The final project (and report) is in `simulation` branch while `master` branch is a clean R package. 
 
 To install:
 
@@ -23,10 +22,10 @@ rho
 
 P.-L. Loh and X. L. Tan. (2018) then used these robust estimates in Graphical Lasso (package `glasso`) or Quadratic Approximation (package `QUIC`) to obtain sparse solutions to precision matrix
 
-With `QUIC`, a function `robQUIC` stand for robust QUIC is implmented. It has build in cross validation described in P.-L. Loh and X. L. Tan. (2018), for instance, to use the method with cross validation:
+With `glasso`, a function `robglasso` stand for robust QUIC is implemented. It has build in cross validation described in P.-L. Loh and X. L. Tan. (2018), for instance, to use the method with cross validation:
 
 ```r
-robQUIC(data=matrix(rnorm(100),20,5), covest = cov,CV=TRUE)
+robglasso(data=matrix(rnorm(100),20,5), covest = cov,CV=TRUE)
 ```
 
-Where `data` should be a matrix and `covest` should be a function that estimate the covariance e.g. anyone mentioned above. The result list contains everything from `QUIC` output with the optimal tuning parameter found by cross validation. One can also decide fold by setting `fold` in `robQUIC`. For more details see `?robQUIC`.  
+Where `data` should be a matrix and `covest` should be a function that estimate the covariance e.g. anyone mentioned above. The result list contains everything from `glasso` output with the optimal tuning parameter found by cross validation. One can also decide fold by setting `fold` in `robglasso`. For more details see `?robglasso`.  

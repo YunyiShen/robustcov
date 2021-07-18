@@ -42,99 +42,114 @@ creatFolds <- function (y, k = 10, list = TRUE, returnTrain = FALSE) {
 
 
 
-#TODO: likelihood, cross validation function, push then merge to simulations
+
 # log likelihood for cross validation
 #' @name negLLrobOmega
 #' @title -log Likelihood on test set
 #' @description The default evaluation function in corss validation, -log liekihood on test set
-#' @param Omega_hat the estimated *precision* matrix of training set
+#' @param Sigma_hat the estimated *covariance* matrix of training set
 #' @param Sigma the *covariance* matrix of test sets
 #' @return -log likelihood 
 #' @export
-negLLrobOmega <- function(Omega_hat, Sigma){
-    -determinant(Omega_hat)$modulus + sum(diag(Omega_hat %*% Sigma))
+negLLrobOmega <- function(Sigma_hat, Sigma){
+    determinant(Sigma_hat)$modulus + sum(diag(solve(Sigma_hat, Sigma)))
 }
 
 
 ## several helper functions
 
-# this fit the QUIC on training and test with a given lambda
-QUIC_lambda <- function(lambda, trainset, testset,covest,evaluation,...){
-    S <- covest(trainset)
-    res <- QUIC::QUIC(S, lambda, ...)
-    S_test <- covest(testset)
-    evaluation(res$X, S_test)
+# this fit the glasso on training and test with a given lambda
+glasso_rho <- function(rho, trainset, testset,covest,evaluation,...){
+    if( "function" %in% class(covest)){
+        S <- covest(trainset)
+        S_test <- covest(testset)
+    }
+    else if("string" %in% class(covest)){
+        S <- do.call(covest, args = list(trainset))
+        S <- do.call(covest, args = list(testset))
+    }
+    
+    
+    res <- glasso::glasso(S, rho, ...)
+    
+    if("function" %in% class(evaluation)){
+        evaluation(res$w, S_test)
+    }
+    else if("string" %in% class(evaluation)){
+        do.call(evaluation, args = list(res$w, S_test))
+    }
+    
 }
 
 # this loop over lambdas in a fold
-QUIC_fold <- function(fold, data, covest, lambdas, evaluation, ...){
+glasso_fold <- function(fold, data, covest, rhos, evaluation, ...){
     trainset <- data[-fold, ]
     testset <- data[fold, ]
-    sapply(lambdas, QUIC_lambda, trainset, testset, covest, evaluation, ...)
+    sapply(rhos, glasso_rho, trainset, testset, covest, evaluation, ...)
 }
 
-#' @name cvQUIC
-#' @title Cross validation to chose tuning parameter of QUIC
+#' @name cvglasso
+#' @title Cross validation to chose tuning parameter of glasso
 #' @description This routine use k fold cross validation to chose tuning parameter
 #' @param data The full dataset, should be a matrix
 #' @param k number of folds
-#' @param covest a *function* that takes a matrix to estimate covariance
-#' @param lambdas a vector of tuning parameter to be tested
-#' @param evaluation a *function* that takes only two arguments, the estimated *precision* and the test *covariace*, when NULL, we use negative log likelihood on test sets
-#' @param ... extra arguments send to QUIC
+#' @param covest a *function* or a string that takes a matrix to estimate covariance
+#' @param rhos a vector of tuning parameter to be tested
+#' @param evaluation a *function* or a string that takes only two arguments, the estimated *precision* and the test *covariace*, when NULL, we use negative log likelihood on test sets
+#' @param ... extra arguments send to glasso
 #' @return a matrix with k rows, each row is the evaluation loss of that fold
-#' @examples cvQUIC(matrix(rnorm(100),20,5), msg = 0)
+#' @examples cvglasso(matrix(rnorm(100),20,5))
 #' @export
-cvQUIC <- function(data, k = 10, covest = cov, 
-                    lambdas = seq(0.1, 1, 0.1), 
+cvglasso <- function(data, k = 10, covest = cov, 
+                    rhos = seq(0.1, 1, 0.1), 
                     evaluation = negLLrobOmega, ...){
     data <- as.matrix(data)
     folds <- creatFolds(1:nrow(data), k = k)
     #browser()
-    res <- lapply(folds, QUIC_fold, data, covest, lambdas, evaluation, ...)
+    res <- lapply(folds, glasso_fold, data, covest, rhos, evaluation, ...)
     res <- Reduce(rbind, res)
     rownames(res) <- paste0("folds", 1:k)
     return(res)
 }
 
 
-#' @name robQUIC
-#' @title QUIC with robust covariance estimations
-#' @description This routine fits QUIC using a robust covariance matrix
+#' @name robglasso
+#' @title glasso with robust covariance estimations
+#' @description This routine fits glasso using a robust covariance matrix
 #' @param data raw data, shoule be a matrix
 #' @param covest a *function* that takes a matrix to estimate covariance
-#' @param lambda a scalar or vector of tuning parameters, if CV=FALSE, shoule be a scalar, if CV=TRUE scalar input will be override and tuning parameter will be chosed based on CV
+#' @param rho a scalar or vector of tuning parameters, if CV=FALSE, shoule be a scalar, if CV=TRUE scalar input will be override and tuning parameter will be chosed based on CV
 #' @param CV bool, whether doing corss validation for tuning parameter, if lambda is a scalar, the candidate will be chosen automatically by log spacing between 0.01 max covariance and max covariance with number of grids
 #' @param k fold for corss validation if applicable
 #' @param grids number of candidate tuning parameters in cross validation
 #' @param evaluation a *function* that takes only two arguments, the estimated *precision* and the test *covariace*, when NULL, we use negative log likelihood on test sets
-#' @param ... extra argument sent to QUIC::QUIC
-#' @return a QUIC return (see ?QUIC::QUIC), most important one is $X the estimated sparse precision,with an extra entry of tuning parameter lambda
-#' @examples robQUIC(matrix(rnorm(100),20,5))
+#' @param ... extra argument sent to glasso::glasso
+#' @return a glasso return (see ?glasso::glasso), most important one is $X the estimated sparse precision,with an extra entry of tuning parameter lambda
+#' @examples robglasso(matrix(rnorm(100),20,5))
 #' @export
-robQUIC <- function(data, covest = cov, lambda = 0.1, 
+robglasso <- function(data, covest = cov, rho = 0.1, 
                     CV = FALSE, k = 10, grids = 15, evaluation = negLLrobOmega, ...){
     data <- as.matrix(data)
     S <- covest(data)
-    if(length(lambda)!=1 & !CV){
+    if(length(rho)!=1 & !CV){
         stop("Provide more than one tuning parameter while not doing cross validation\n")
     }
     if(CV){
-        if(length(lambda)<=1){
-            lambdas <- seq(log(0.01*max(S[upper.tri(S)])), log(max(S[upper.tri(S)])), length.out = grids)
-            lambdas <- exp(lambdas)
+        if(length(rho)<=1){
+            rhos <- seq(log(0.01*max(S[upper.tri(S)])), log(max(S[upper.tri(S)])), length.out = grids)
+            rhos <- exp(rhos)
         }
         else {
-           lambdas <- lambda
+           rhos <- rho
         }
-        cv_res <- cvQUIC(data, k = k, covest = covest, 
-                    lambdas = lambdas, 
+        cv_res <- cvglasso(data, k = k, covest = covest, 
+                    rhos = rhos, 
                     evaluation = evaluation, ...)
         mean_cv <- colMeans(cv_res)
-        lambda <- lambdas[which(mean_cv==min(mean_cv))[1]]
+        rho <- rhos[which(mean_cv==min(mean_cv))[1]]
     }
-    res <- QUIC::QUIC(S, lambda, ...)
-    res$lambda <- lambda
+    res <- glasso(S, rho, ...)
+    res$rho <- rho
     return(res)
 }
 

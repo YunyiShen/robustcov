@@ -5,9 +5,8 @@ Version: 1.0
 Date: 2021-04-06
 Author: Yunyi Shen
 Maintainer: Yunyi Shen <yyshen@pku.edu.cn>
-Description: This package replicate methods in High-dimensional robust precision matrix estimation: Cellwise corruption under epsilon-contamination
+Description: This package implements methods in High-dimensional robust precision matrix estimation: Cellwise corruption under epsilon-contamination by Luo and Tan 2018. 
 License: GPL-3
-Imports: Rcpp (>= 1.0.6), QUIC
+Imports: Rcpp (>= 1.0.6), glasso, caret
 LinkingTo: Rcpp, RcppArmadillo
-Remotes: YunyiShen/QUIC
 RoxygenNote: 7.1.1
