@@ -64,10 +64,16 @@ glasso_rho <- function(rho, trainset, testset,covest,evaluation,...){
         S <- covest(trainset)
         S_test <- covest(testset)
     }
-    else if("string" %in% class(covest)){
-        S <- do.call(covest, args = list(trainset))
-        S <- do.call(covest, args = list(testset))
+    else {
+        if("character" %in% class(covest)){
+            S <- do.call(covest, args = list(trainset))
+            S_test <- do.call(covest, args = list(testset))
+        }
+        else{
+            stop("covest is not callable, reported in glasso_rho, this should not happen, if you see this please file an issue")
+        }
     }
+       
     
     
     res <- glasso::glasso(S, rho, ...)
@@ -75,9 +81,14 @@ glasso_rho <- function(rho, trainset, testset,covest,evaluation,...){
     if("function" %in% class(evaluation)){
         evaluation(res$w, S_test)
     }
-    else if("string" %in% class(evaluation)){
-        do.call(evaluation, args = list(res$w, S_test))
-    }
+    else{
+        if("character" %in% class(evaluation)){
+            do.call(evaluation, args = list(res$w, S_test))
+        }
+        else{
+            stop("please provide valid performance evaluation method (function or string)")
+        }
+    } 
     
 }
 
@@ -117,12 +128,12 @@ cvglasso <- function(data, k = 10, covest = cov,
 #' @title glasso with robust covariance estimations
 #' @description This routine fits glasso using a robust covariance matrix
 #' @param data raw data, shoule be a matrix
-#' @param covest a *function* that takes a matrix to estimate covariance
+#' @param covest a *function* or string that takes a matrix to estimate covariance
 #' @param rho a scalar or vector of tuning parameters, if CV=FALSE, shoule be a scalar, if CV=TRUE scalar input will be override and tuning parameter will be chosed based on CV
 #' @param CV bool, whether doing corss validation for tuning parameter, if lambda is a scalar, the candidate will be chosen automatically by log spacing between 0.01 max covariance and max covariance with number of grids
 #' @param k fold for corss validation if applicable
 #' @param grids number of candidate tuning parameters in cross validation
-#' @param evaluation a *function* that takes only two arguments, the estimated *precision* and the test *covariace*, when NULL, we use negative log likelihood on test sets
+#' @param evaluation a *function* or string that takes only two arguments, the estimated *precision* and the test *covariace*, when NULL, we use negative log likelihood on test sets
 #' @param ... extra argument sent to glasso::glasso
 #' @return a glasso return (see ?glasso::glasso), most important one is $X the estimated sparse precision,with an extra entry of tuning parameter lambda
 #' @examples robglasso(matrix(rnorm(100),20,5))
@@ -130,7 +141,18 @@ cvglasso <- function(data, k = 10, covest = cov,
 robglasso <- function(data, covest = cov, rho = 0.1, 
                     CV = FALSE, k = 10, grids = 15, evaluation = negLLrobOmega, ...){
     data <- as.matrix(data)
-    S <- covest(data)
+    if( "function" %in% class(covest)){
+        S <- covest(data)
+        
+    }
+    else {
+        if("character" %in% class(covest)){
+            S <- do.call(covest, args = list(data))
+        }
+        else{
+            stop("please provide valid covariance estimation method")
+        }
+    }
     if(length(rho)!=1 & !CV){
         stop("Provide more than one tuning parameter while not doing cross validation\n")
     }

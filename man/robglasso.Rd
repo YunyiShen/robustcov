@@ -18,7 +18,7 @@ robglasso(
 \arguments{
 \item{data}{raw data, shoule be a matrix}
 
-\item{covest}{a *function* that takes a matrix to estimate covariance}
+\item{covest}{a *function* or string that takes a matrix to estimate covariance}
 
 \item{rho}{a scalar or vector of tuning parameters, if CV=FALSE, shoule be a scalar, if CV=TRUE scalar input will be override and tuning parameter will be chosed based on CV}
 
@@ -28,7 +28,7 @@ robglasso(
 
 \item{grids}{number of candidate tuning parameters in cross validation}
 
-\item{evaluation}{a *function* that takes only two arguments, the estimated *precision* and the test *covariace*, when NULL, we use negative log likelihood on test sets}
+\item{evaluation}{a *function* or string that takes only two arguments, the estimated *precision* and the test *covariace*, when NULL, we use negative log likelihood on test sets}
 
 \item{...}{extra argument sent to glasso::glasso}
 }
