@@ -22,7 +22,7 @@ rho
 
 P.-L. Loh and X. L. Tan. (2018) then used these robust estimates in Graphical Lasso (package `glasso`) or Quadratic Approximation (package `QUIC`) to obtain sparse solutions to precision matrix
 
-With `glasso`, a function `robglasso` stand for robust QUIC is implemented. It has build in cross validation described in P.-L. Loh and X. L. Tan. (2018), for instance, to use the method with cross validation:
+With `glasso`, a function `robglasso` stand for robust graphical LASSO is implemented. It has build in cross validation described in P.-L. Loh and X. L. Tan. (2018), for instance, to use the method with cross validation:
 
 ```r
 robglasso(data=matrix(rnorm(100),20,5), covest = cov,CV=TRUE)
