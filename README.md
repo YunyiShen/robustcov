@@ -1,3 +1,5 @@
+![](https://github.com/YunyiShen/RobustOmega/workflows/R-CMD-check/badge.svg)
+
 # RobustOmega
 Robust precision matrix estimation, an R package generated from final project of STAT 760 at UW Madison in Spring 2021. Based on the review of P.-L. Loh and X. L. Tan. (2018)
 
