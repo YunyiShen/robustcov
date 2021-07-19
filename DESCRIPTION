@@ -1,11 +1,11 @@
-Package: RobustOmega
+Package: robustcov
 Type: Package
-Title: Robust (Sparse) Precision Matrix Estimations
+Title: Robust Covariance and (Sparse) Precision Matrix Estimations
 Version: 1.0
 Date: 2021-07-18
 Authors@R: c(person("Yunyi", "Shen", email = "yshen99@wisc.edu", role = c("aut", "cre"),comment = c(ORCID = "0000-0003-2779-6507")))
 Maintainer: Yunyi Shen <yshen99@wisc.edu>
-Description: Methods in High-dimensional robust precision matrix estimation: Cellwise corruption under epsilon-contamination by Luo and Tan 2018. 
+Description: Methods for robust covariance and precision matrix estimation based on Luo and Tan (2018) <doi:10.1214/18-EJS1427>. 
 License: GPL-3
 Imports: Rcpp (>= 1.0.6), glasso, caret
 LinkingTo: Rcpp, RcppArmadillo
