@@ -11,7 +11,7 @@
 #' @param maxit max iterations in finding nearest positive matrix
 #' @export
 nearPPSD <- function(X, eigenTol = 1e-06, convTol = 1e-07, psdTol = 1e-08, maxit = 1000L) {
-    .Call(`_RobustOmega_nearPPSD`, X, eigenTol, convTol, psdTol, maxit)
+    .Call(`_robustcov_nearPPSD`, X, eigenTol, convTol, psdTol, maxit)
 }
 
 #' @name covGKmat
@@ -22,7 +22,7 @@ nearPPSD <- function(X, eigenTol = 1e-06, convTol = 1e-07, psdTol = 1e-08, maxit
 #' @examples covGKmat(matrix(rnorm(500),100,5)) 
 #' @export
 covGKmat <- function(data) {
-    .Call(`_RobustOmega_covGKmat`, data)
+    .Call(`_robustcov_covGKmat`, data)
 }
 
 #' @name corSpearmanmat
@@ -33,7 +33,7 @@ covGKmat <- function(data) {
 #' @examples corSpearmanmat(matrix(rnorm(500),100,5)) 
 #' @export
 corSpearmanmat <- function(data) {
-    .Call(`_RobustOmega_corSpearmanmat`, data)
+    .Call(`_robustcov_corSpearmanmat`, data)
 }
 
 #' @name corKendallmat
@@ -44,7 +44,7 @@ corSpearmanmat <- function(data) {
 #' @examples corKendallmat(matrix(rnorm(500),100,5)) 
 #' @export
 corKendallmat <- function(data) {
-    .Call(`_RobustOmega_corKendallmat`, data)
+    .Call(`_robustcov_corKendallmat`, data)
 }
 
 #' @name corQuadrantmat
@@ -55,7 +55,7 @@ corKendallmat <- function(data) {
 #' @examples corQuadrantmat(matrix(rnorm(500),100,5)) 
 #' @export
 corQuadrantmat <- function(data) {
-    .Call(`_RobustOmega_corQuadrantmat`, data)
+    .Call(`_robustcov_corQuadrantmat`, data)
 }
 
 #' @name covSpearmanUmat
@@ -66,7 +66,7 @@ corQuadrantmat <- function(data) {
 #' @examples covSpearmanUmat(matrix(rnorm(500),100,5)) 
 #' @export
 covSpearmanUmat <- function(data) {
-    .Call(`_RobustOmega_covSpearmanUmat`, data)
+    .Call(`_robustcov_covSpearmanUmat`, data)
 }
 
 #' @name covOGKmat
@@ -77,7 +77,7 @@ covSpearmanUmat <- function(data) {
 #' @examples covOGKmat(matrix(rnorm(500),100,5)) 
 #' @export
 covOGKmat <- function(data) {
-    .Call(`_RobustOmega_covOGKmat`, data)
+    .Call(`_robustcov_covOGKmat`, data)
 }
 
 #' @name covNPDmat
@@ -92,7 +92,7 @@ covOGKmat <- function(data) {
 #' @examples covNPDmat(matrix(rnorm(500),100,5)) 
 #' @export
 covNPDmat <- function(data, eigenTol = 1e-06, convTol = 1e-07, psdTol = 1e-08, maxit = 1000L) {
-    .Call(`_RobustOmega_covNPDmat`, data, eigenTol, convTol, psdTol, maxit)
+    .Call(`_robustcov_covNPDmat`, data, eigenTol, convTol, psdTol, maxit)
 }
 
 #' @name raltert
@@ -104,7 +104,7 @@ covNPDmat <- function(data, eigenTol = 1e-06, convTol = 1e-07, psdTol = 1e-08, m
 #' @return a matrix with dimension n by p, each row is a sample
 #' @export
 raltert <- function(n, Omega, nu) {
-    .Call(`_RobustOmega_raltert`, n, Omega, nu)
+    .Call(`_robustcov_raltert`, n, Omega, nu)
 }
 
 #' @name rmvt
@@ -116,7 +116,7 @@ raltert <- function(n, Omega, nu) {
 #' @return a matrix with dimension n by p, each row is a sample
 #' @export
 rmvt <- function(n, Omega, nu) {
-    .Call(`_RobustOmega_rmvt`, n, Omega, nu)
+    .Call(`_robustcov_rmvt`, n, Omega, nu)
 }
 
 #' @name rmvnorm
@@ -127,6 +127,6 @@ rmvt <- function(n, Omega, nu) {
 #' @return a matrix with dimension n by p, each row is a sample
 #' @export
 rmvnorm <- function(n, Omega) {
-    .Call(`_RobustOmega_rmvnorm`, n, Omega)
+    .Call(`_robustcov_rmvnorm`, n, Omega)
 }
 

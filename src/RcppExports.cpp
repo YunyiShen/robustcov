@@ -13,7 +13,7 @@ Rcpp::Rostream<false>& Rcpp::Rcerr = Rcpp::Rcpp_cerr_get();
 
 // nearPPSD
 arma::mat nearPPSD(arma::mat X, const float eigenTol, const float convTol, const float psdTol, const int maxit);
-RcppExport SEXP _RobustOmega_nearPPSD(SEXP XSEXP, SEXP eigenTolSEXP, SEXP convTolSEXP, SEXP psdTolSEXP, SEXP maxitSEXP) {
+RcppExport SEXP _robustcov_nearPPSD(SEXP XSEXP, SEXP eigenTolSEXP, SEXP convTolSEXP, SEXP psdTolSEXP, SEXP maxitSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -28,7 +28,7 @@ END_RCPP
 }
 // covGKmat
 arma::mat covGKmat(const arma::mat& data);
-RcppExport SEXP _RobustOmega_covGKmat(SEXP dataSEXP) {
+RcppExport SEXP _robustcov_covGKmat(SEXP dataSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -39,7 +39,7 @@ END_RCPP
 }
 // corSpearmanmat
 arma::mat corSpearmanmat(const arma::mat& data);
-RcppExport SEXP _RobustOmega_corSpearmanmat(SEXP dataSEXP) {
+RcppExport SEXP _robustcov_corSpearmanmat(SEXP dataSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -50,7 +50,7 @@ END_RCPP
 }
 // corKendallmat
 arma::mat corKendallmat(const arma::mat& data);
-RcppExport SEXP _RobustOmega_corKendallmat(SEXP dataSEXP) {
+RcppExport SEXP _robustcov_corKendallmat(SEXP dataSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -61,7 +61,7 @@ END_RCPP
 }
 // corQuadrantmat
 arma::mat corQuadrantmat(const arma::mat& data);
-RcppExport SEXP _RobustOmega_corQuadrantmat(SEXP dataSEXP) {
+RcppExport SEXP _robustcov_corQuadrantmat(SEXP dataSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -72,7 +72,7 @@ END_RCPP
 }
 // covSpearmanUmat
 arma::mat covSpearmanUmat(const arma::mat& data);
-RcppExport SEXP _RobustOmega_covSpearmanUmat(SEXP dataSEXP) {
+RcppExport SEXP _robustcov_covSpearmanUmat(SEXP dataSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -83,7 +83,7 @@ END_RCPP
 }
 // covOGKmat
 arma::mat covOGKmat(const arma::mat& data);
-RcppExport SEXP _RobustOmega_covOGKmat(SEXP dataSEXP) {
+RcppExport SEXP _robustcov_covOGKmat(SEXP dataSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -94,7 +94,7 @@ END_RCPP
 }
 // covNPDmat
 arma::mat covNPDmat(const arma::mat& data, const float eigenTol, const float convTol, const float psdTol, const int maxit);
-RcppExport SEXP _RobustOmega_covNPDmat(SEXP dataSEXP, SEXP eigenTolSEXP, SEXP convTolSEXP, SEXP psdTolSEXP, SEXP maxitSEXP) {
+RcppExport SEXP _robustcov_covNPDmat(SEXP dataSEXP, SEXP eigenTolSEXP, SEXP convTolSEXP, SEXP psdTolSEXP, SEXP maxitSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -109,7 +109,7 @@ END_RCPP
 }
 // raltert
 arma::mat raltert(int n, const arma::mat& Omega, int nu);
-RcppExport SEXP _RobustOmega_raltert(SEXP nSEXP, SEXP OmegaSEXP, SEXP nuSEXP) {
+RcppExport SEXP _robustcov_raltert(SEXP nSEXP, SEXP OmegaSEXP, SEXP nuSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -122,7 +122,7 @@ END_RCPP
 }
 // rmvt
 arma::mat rmvt(int n, const arma::mat& Omega, int nu);
-RcppExport SEXP _RobustOmega_rmvt(SEXP nSEXP, SEXP OmegaSEXP, SEXP nuSEXP) {
+RcppExport SEXP _robustcov_rmvt(SEXP nSEXP, SEXP OmegaSEXP, SEXP nuSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -135,7 +135,7 @@ END_RCPP
 }
 // rmvnorm
 arma::mat rmvnorm(int n, const arma::mat& Omega);
-RcppExport SEXP _RobustOmega_rmvnorm(SEXP nSEXP, SEXP OmegaSEXP) {
+RcppExport SEXP _robustcov_rmvnorm(SEXP nSEXP, SEXP OmegaSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -147,21 +147,21 @@ END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
-    {"_RobustOmega_nearPPSD", (DL_FUNC) &_RobustOmega_nearPPSD, 5},
-    {"_RobustOmega_covGKmat", (DL_FUNC) &_RobustOmega_covGKmat, 1},
-    {"_RobustOmega_corSpearmanmat", (DL_FUNC) &_RobustOmega_corSpearmanmat, 1},
-    {"_RobustOmega_corKendallmat", (DL_FUNC) &_RobustOmega_corKendallmat, 1},
-    {"_RobustOmega_corQuadrantmat", (DL_FUNC) &_RobustOmega_corQuadrantmat, 1},
-    {"_RobustOmega_covSpearmanUmat", (DL_FUNC) &_RobustOmega_covSpearmanUmat, 1},
-    {"_RobustOmega_covOGKmat", (DL_FUNC) &_RobustOmega_covOGKmat, 1},
-    {"_RobustOmega_covNPDmat", (DL_FUNC) &_RobustOmega_covNPDmat, 5},
-    {"_RobustOmega_raltert", (DL_FUNC) &_RobustOmega_raltert, 3},
-    {"_RobustOmega_rmvt", (DL_FUNC) &_RobustOmega_rmvt, 3},
-    {"_RobustOmega_rmvnorm", (DL_FUNC) &_RobustOmega_rmvnorm, 2},
+    {"_robustcov_nearPPSD", (DL_FUNC) &_robustcov_nearPPSD, 5},
+    {"_robustcov_covGKmat", (DL_FUNC) &_robustcov_covGKmat, 1},
+    {"_robustcov_corSpearmanmat", (DL_FUNC) &_robustcov_corSpearmanmat, 1},
+    {"_robustcov_corKendallmat", (DL_FUNC) &_robustcov_corKendallmat, 1},
+    {"_robustcov_corQuadrantmat", (DL_FUNC) &_robustcov_corQuadrantmat, 1},
+    {"_robustcov_covSpearmanUmat", (DL_FUNC) &_robustcov_covSpearmanUmat, 1},
+    {"_robustcov_covOGKmat", (DL_FUNC) &_robustcov_covOGKmat, 1},
+    {"_robustcov_covNPDmat", (DL_FUNC) &_robustcov_covNPDmat, 5},
+    {"_robustcov_raltert", (DL_FUNC) &_robustcov_raltert, 3},
+    {"_robustcov_rmvt", (DL_FUNC) &_robustcov_rmvt, 3},
+    {"_robustcov_rmvnorm", (DL_FUNC) &_robustcov_rmvnorm, 2},
     {NULL, NULL, 0}
 };
 
-RcppExport void R_init_RobustOmega(DllInfo *dll) {
+RcppExport void R_init_robustcov(DllInfo *dll) {
     R_registerRoutines(dll, NULL, CallEntries, NULL, NULL);
     R_useDynamicSymbols(dll, FALSE);
 }
