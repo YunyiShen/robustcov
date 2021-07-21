@@ -16,19 +16,19 @@ robglasso(
 )
 }
 \arguments{
-\item{data}{raw data, shoule be a matrix}
+\item{data}{raw data, should be a matrix or a data.frame, row as sample}
 
-\item{covest}{a *function* or string that takes a matrix to estimate covariance}
+\item{covest}{a *function* or name of a function (string) that takes a matrix to estimate covariance}
 
-\item{rho}{a scalar or vector of tuning parameters, if CV=FALSE, shoule be a scalar, if CV=TRUE scalar input will be override and tuning parameter will be chosed based on CV}
+\item{rho}{a scalar or vector of tuning parameters to be chosen, if CV=FALSE, should be a scalar, if CV=TRUE scalar input will be override and tuning parameter will be chosen based on CV}
 
-\item{CV}{bool, whether doing corss validation for tuning parameter, if lambda is a scalar, the candidate will be chosen automatically by log spacing between 0.01 max covariance and max covariance with number of grids}
+\item{CV}{bool, whether doing cross validation for tuning parameter, if set to TRUE and rho is a scalar, the candidate will be chosen automatically by log spacing between 0.01 max covariance and max covariance with number of grids}
 
-\item{k}{fold for corss validation if applicable}
+\item{k}{fold for cross validation if applicable}
 
 \item{grids}{number of candidate tuning parameters in cross validation}
 
-\item{evaluation}{a *function* or string that takes only two arguments, the estimated *precision* and the test *covariace*, when NULL, we use negative log likelihood on test sets}
+\item{evaluation}{a *function* or name of a function (string) that takes only two arguments, the estimated *covariance* and the test *covariace*, when NULL, we use negative log likelihood on test sets}
 
 \item{...}{extra argument sent to glasso::glasso}
 }

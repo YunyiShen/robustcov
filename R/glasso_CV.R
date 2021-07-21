@@ -102,11 +102,11 @@ glasso_fold <- function(fold, data, covest, rhos, evaluation, ...){
 #' @name cvglasso
 #' @title Cross validation to chose tuning parameter of glasso
 #' @description This routine use k fold cross validation to chose tuning parameter
-#' @param data The full dataset, should be a matrix
+#' @param data The full dataset, should be a matrix or a data.frame, row as sample
 #' @param k number of folds
-#' @param covest a *function* or a string that takes a matrix to estimate covariance
+#' @param covest a *function* or name of a function (string) that takes a matrix to estimate covariance
 #' @param rhos a vector of tuning parameter to be tested
-#' @param evaluation a *function* or a string that takes only two arguments, the estimated *precision* and the test *covariace*, when NULL, we use negative log likelihood on test sets
+#' @param evaluation a *function* or name of a function (string) that takes only two arguments, the estimated covariance and the test covariance, when NULL, we use negative log likelihood on test sets
 #' @param ... extra arguments send to glasso
 #' @return a matrix with k rows, each row is the evaluation loss of that fold
 #' @examples cvglasso(matrix(rnorm(100),20,5))
@@ -127,13 +127,13 @@ cvglasso <- function(data, k = 10, covest = cov,
 #' @name robglasso
 #' @title glasso with robust covariance estimations
 #' @description This routine fits glasso using a robust covariance matrix
-#' @param data raw data, shoule be a matrix
-#' @param covest a *function* or string that takes a matrix to estimate covariance
-#' @param rho a scalar or vector of tuning parameters, if CV=FALSE, shoule be a scalar, if CV=TRUE scalar input will be override and tuning parameter will be chosed based on CV
-#' @param CV bool, whether doing corss validation for tuning parameter, if lambda is a scalar, the candidate will be chosen automatically by log spacing between 0.01 max covariance and max covariance with number of grids
-#' @param k fold for corss validation if applicable
+#' @param data raw data, should be a matrix or a data.frame, row as sample
+#' @param covest a *function* or name of a function (string) that takes a matrix to estimate covariance
+#' @param rho a scalar or vector of tuning parameters to be chosen, if CV=FALSE, should be a scalar, if CV=TRUE scalar input will be override and tuning parameter will be chosen based on CV
+#' @param CV bool, whether doing cross validation for tuning parameter, if set to TRUE and rho is a scalar, the candidate will be chosen automatically by log spacing between 0.01 max covariance and max covariance with number of grids
+#' @param k fold for cross validation if applicable
 #' @param grids number of candidate tuning parameters in cross validation
-#' @param evaluation a *function* or string that takes only two arguments, the estimated *precision* and the test *covariace*, when NULL, we use negative log likelihood on test sets
+#' @param evaluation a *function* or name of a function (string) that takes only two arguments, the estimated *covariance* and the test *covariace*, when NULL, we use negative log likelihood on test sets
 #' @param ... extra argument sent to glasso::glasso
 #' @return a glasso return (see ?glasso::glasso), most important one is $X the estimated sparse precision,with an extra entry of tuning parameter lambda
 #' @examples robglasso(matrix(rnorm(100),20,5))

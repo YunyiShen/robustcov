@@ -14,15 +14,15 @@ cvglasso(
 )
 }
 \arguments{
-\item{data}{The full dataset, should be a matrix}
+\item{data}{The full dataset, should be a matrix or a data.frame, row as sample}
 
 \item{k}{number of folds}
 
-\item{covest}{a *function* or a string that takes a matrix to estimate covariance}
+\item{covest}{a *function* or name of a function (string) that takes a matrix to estimate covariance}
 
 \item{rhos}{a vector of tuning parameter to be tested}
 
-\item{evaluation}{a *function* or a string that takes only two arguments, the estimated *precision* and the test *covariace*, when NULL, we use negative log likelihood on test sets}
+\item{evaluation}{a *function* or name of a function (string) that takes only two arguments, the estimated covariance and the test covariance, when NULL, we use negative log likelihood on test sets}
 
 \item{...}{extra arguments send to glasso}
 }
