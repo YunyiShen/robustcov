@@ -1,7 +1,7 @@
 ![](https://github.com/YunyiShen/RobustOmega/workflows/R-CMD-check/badge.svg)
 
 # robustcov
-Robust covariance and precision matrix estimation, an R package generated from final project of STAT 760 at UW Madison in Spring 2021. Based on the review of P.-L. Loh and X. L. Tan. (2018)
+Robust covariance and precision matrix estimators. Based on the review of P.-L. Loh and X. L. Tan. (2018)
 
 
 To install:
