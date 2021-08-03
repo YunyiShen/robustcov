@@ -26,75 +26,75 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
-// covGKmat
-arma::mat covGKmat(const arma::mat& data);
-RcppExport SEXP _robustcov_covGKmat(SEXP dataSEXP) {
+// covGK
+arma::mat covGK(const arma::mat& data);
+RcppExport SEXP _robustcov_covGK(SEXP dataSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< const arma::mat& >::type data(dataSEXP);
-    rcpp_result_gen = Rcpp::wrap(covGKmat(data));
+    rcpp_result_gen = Rcpp::wrap(covGK(data));
     return rcpp_result_gen;
 END_RCPP
 }
-// corSpearmanmat
-arma::mat corSpearmanmat(const arma::mat& data);
-RcppExport SEXP _robustcov_corSpearmanmat(SEXP dataSEXP) {
+// corSpearman
+arma::mat corSpearman(const arma::mat& data);
+RcppExport SEXP _robustcov_corSpearman(SEXP dataSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< const arma::mat& >::type data(dataSEXP);
-    rcpp_result_gen = Rcpp::wrap(corSpearmanmat(data));
+    rcpp_result_gen = Rcpp::wrap(corSpearman(data));
     return rcpp_result_gen;
 END_RCPP
 }
-// corKendallmat
-arma::mat corKendallmat(const arma::mat& data);
-RcppExport SEXP _robustcov_corKendallmat(SEXP dataSEXP) {
+// corKendall
+arma::mat corKendall(const arma::mat& data);
+RcppExport SEXP _robustcov_corKendall(SEXP dataSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< const arma::mat& >::type data(dataSEXP);
-    rcpp_result_gen = Rcpp::wrap(corKendallmat(data));
+    rcpp_result_gen = Rcpp::wrap(corKendall(data));
     return rcpp_result_gen;
 END_RCPP
 }
-// corQuadrantmat
-arma::mat corQuadrantmat(const arma::mat& data);
-RcppExport SEXP _robustcov_corQuadrantmat(SEXP dataSEXP) {
+// corQuadrant
+arma::mat corQuadrant(const arma::mat& data);
+RcppExport SEXP _robustcov_corQuadrant(SEXP dataSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< const arma::mat& >::type data(dataSEXP);
-    rcpp_result_gen = Rcpp::wrap(corQuadrantmat(data));
+    rcpp_result_gen = Rcpp::wrap(corQuadrant(data));
     return rcpp_result_gen;
 END_RCPP
 }
-// covSpearmanUmat
-arma::mat covSpearmanUmat(const arma::mat& data);
-RcppExport SEXP _robustcov_covSpearmanUmat(SEXP dataSEXP) {
+// covSpearmanU
+arma::mat covSpearmanU(const arma::mat& data);
+RcppExport SEXP _robustcov_covSpearmanU(SEXP dataSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< const arma::mat& >::type data(dataSEXP);
-    rcpp_result_gen = Rcpp::wrap(covSpearmanUmat(data));
+    rcpp_result_gen = Rcpp::wrap(covSpearmanU(data));
     return rcpp_result_gen;
 END_RCPP
 }
-// covOGKmat
-arma::mat covOGKmat(const arma::mat& data);
-RcppExport SEXP _robustcov_covOGKmat(SEXP dataSEXP) {
+// covOGK
+arma::mat covOGK(const arma::mat& data);
+RcppExport SEXP _robustcov_covOGK(SEXP dataSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< const arma::mat& >::type data(dataSEXP);
-    rcpp_result_gen = Rcpp::wrap(covOGKmat(data));
+    rcpp_result_gen = Rcpp::wrap(covOGK(data));
     return rcpp_result_gen;
 END_RCPP
 }
-// covNPDmat
-arma::mat covNPDmat(const arma::mat& data, const float eigenTol, const float convTol, const float psdTol, const int maxit);
-RcppExport SEXP _robustcov_covNPDmat(SEXP dataSEXP, SEXP eigenTolSEXP, SEXP convTolSEXP, SEXP psdTolSEXP, SEXP maxitSEXP) {
+// covNPD
+arma::mat covNPD(const arma::mat& data, const float eigenTol, const float convTol, const float psdTol, const int maxit);
+RcppExport SEXP _robustcov_covNPD(SEXP dataSEXP, SEXP eigenTolSEXP, SEXP convTolSEXP, SEXP psdTolSEXP, SEXP maxitSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -103,7 +103,7 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< const float >::type convTol(convTolSEXP);
     Rcpp::traits::input_parameter< const float >::type psdTol(psdTolSEXP);
     Rcpp::traits::input_parameter< const int >::type maxit(maxitSEXP);
-    rcpp_result_gen = Rcpp::wrap(covNPDmat(data, eigenTol, convTol, psdTol, maxit));
+    rcpp_result_gen = Rcpp::wrap(covNPD(data, eigenTol, convTol, psdTol, maxit));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -148,13 +148,13 @@ END_RCPP
 
 static const R_CallMethodDef CallEntries[] = {
     {"_robustcov_nearPPSD", (DL_FUNC) &_robustcov_nearPPSD, 5},
-    {"_robustcov_covGKmat", (DL_FUNC) &_robustcov_covGKmat, 1},
-    {"_robustcov_corSpearmanmat", (DL_FUNC) &_robustcov_corSpearmanmat, 1},
-    {"_robustcov_corKendallmat", (DL_FUNC) &_robustcov_corKendallmat, 1},
-    {"_robustcov_corQuadrantmat", (DL_FUNC) &_robustcov_corQuadrantmat, 1},
-    {"_robustcov_covSpearmanUmat", (DL_FUNC) &_robustcov_covSpearmanUmat, 1},
-    {"_robustcov_covOGKmat", (DL_FUNC) &_robustcov_covOGKmat, 1},
-    {"_robustcov_covNPDmat", (DL_FUNC) &_robustcov_covNPDmat, 5},
+    {"_robustcov_covGK", (DL_FUNC) &_robustcov_covGK, 1},
+    {"_robustcov_corSpearman", (DL_FUNC) &_robustcov_corSpearman, 1},
+    {"_robustcov_corKendall", (DL_FUNC) &_robustcov_corKendall, 1},
+    {"_robustcov_corQuadrant", (DL_FUNC) &_robustcov_corQuadrant, 1},
+    {"_robustcov_covSpearmanU", (DL_FUNC) &_robustcov_covSpearmanU, 1},
+    {"_robustcov_covOGK", (DL_FUNC) &_robustcov_covOGK, 1},
+    {"_robustcov_covNPD", (DL_FUNC) &_robustcov_covNPD, 5},
     {"_robustcov_raltert", (DL_FUNC) &_robustcov_raltert, 3},
     {"_robustcov_rmvt", (DL_FUNC) &_robustcov_rmvt, 3},
     {"_robustcov_rmvnorm", (DL_FUNC) &_robustcov_rmvnorm, 2},

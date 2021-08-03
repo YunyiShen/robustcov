@@ -9,78 +9,79 @@
 #' @param convTol tolerance in cov, used in finding nearest positive matrix
 #' @param psdTol tolerance in psd, used in finding nearest positive matrix
 #' @param maxit max iterations in finding nearest positive matrix
+#' @return a matrix which is the nearest positive semi-definite matrix of input X
 #' @export
 nearPPSD <- function(X, eigenTol = 1e-06, convTol = 1e-07, psdTol = 1e-08, maxit = 1000L) {
     .Call(`_robustcov_nearPPSD`, X, eigenTol, convTol, psdTol, maxit)
 }
 
-#' @name covGKmat
+#' @name covGK
 #' @title Gnanadesikan-Kettenring estimator for *covariance*
 #' @description This routine calculates the Gnanadesikan-Kettenring estimator, diagonal will be MAD
 #' @param data the n by p raw data matrix
 #' @return a matrix with dimension p by p, GK estimator, note that it's not necessarily positive
-#' @examples covGKmat(matrix(rnorm(500),100,5)) 
+#' @examples covGK(matrix(rnorm(500),100,5)) 
 #' @export
-covGKmat <- function(data) {
-    .Call(`_robustcov_covGKmat`, data)
+covGK <- function(data) {
+    .Call(`_robustcov_covGK`, data)
 }
 
-#' @name corSpearmanmat
+#' @name corSpearman
 #' @title Spearman correlation
 #' @description This routine calculates the Spearman correlation
 #' @param data the n by p raw data matrix
 #' @return a matrix with dimension p by p of spearman correlations
-#' @examples corSpearmanmat(matrix(rnorm(500),100,5)) 
+#' @examples corSpearman(matrix(rnorm(500),100,5)) 
 #' @export
-corSpearmanmat <- function(data) {
-    .Call(`_robustcov_corSpearmanmat`, data)
+corSpearman <- function(data) {
+    .Call(`_robustcov_corSpearman`, data)
 }
 
-#' @name corKendallmat
+#' @name corKendall
 #' @title Kendall's tau
 #' @description This routine calculates the Kendall's tau
 #' @param data the n by p raw data matrix
 #' @return a matrix with dimension p by p, Kendall's tau
-#' @examples corKendallmat(matrix(rnorm(500),100,5)) 
+#' @examples corKendall(matrix(rnorm(500),100,5)) 
 #' @export
-corKendallmat <- function(data) {
-    .Call(`_robustcov_corKendallmat`, data)
+corKendall <- function(data) {
+    .Call(`_robustcov_corKendall`, data)
 }
 
-#' @name corQuadrantmat
+#' @name corQuadrant
 #' @title Quadrant correlation coefficients
 #' @description This routine calculates Quadrant correlation coefficients
 #' @param data the n by p raw data matrix
 #' @return a matrix with dimension p by p, Quadrant correlation coefficients
-#' @examples corQuadrantmat(matrix(rnorm(500),100,5)) 
+#' @examples corQuadrant(matrix(rnorm(500),100,5)) 
 #' @export
-corQuadrantmat <- function(data) {
-    .Call(`_robustcov_corQuadrantmat`, data)
+corQuadrant <- function(data) {
+    .Call(`_robustcov_corQuadrant`, data)
 }
 
-#' @name covSpearmanUmat
+#' @name covSpearmanU
 #' @title SpearmanU estimator for *covariance*
 #' @description This routine calculates the SpearmanU, the pairwise covariance matrix estimator proposed in Oellererand Croux
 #' @param data the n by p raw data matrix
-#' @return a matrix with dimension p by p of spearman correlations
-#' @examples covSpearmanUmat(matrix(rnorm(500),100,5)) 
+#' @return a matrix with dimension p by p of spearmanU correlation 
+#' @examples covSpearmanU(matrix(rnorm(500),100,5)) 
 #' @export
-covSpearmanUmat <- function(data) {
-    .Call(`_robustcov_covSpearmanUmat`, data)
+covSpearmanU <- function(data) {
+    .Call(`_robustcov_covSpearmanU`, data)
 }
 
-#' @name covOGKmat
+#' @name covOGK
 #' @title Orthogonalized Gnanadesikan-Kettenring (OGK) estimator for *covariance*
 #' @description This routine calculates the Orthogonalized Gnanadesikan-Kettenring (OGK) estimator for *covariance*, using scale estimation of Gn, as in Maronna and Zamar
 #' @param data the n by p raw data matrix
 #' @return a matrix with dimension p by p, OGK estimator
-#' @examples covOGKmat(matrix(rnorm(500),100,5)) 
+#' @examples covOGK(matrix(rnorm(500),100,5)) 
 #' @export
-covOGKmat <- function(data) {
-    .Call(`_robustcov_covOGKmat`, data)
+covOGK <- function(data) {
+    .Call(`_robustcov_covOGK`, data)
 }
 
-#' @name covNPDmat
+#' @name covNPD
 #' @title NPD estimator for *covariance* based on Qn 
 #' @description This routine calculates the NPD estimator for *covariance* based on Qn
 #' @param data the n by p raw data matrix
@@ -89,10 +90,10 @@ covOGKmat <- function(data) {
 #' @param psdTol tolerance in psd, used in finding nearest positive matrix
 #' @param maxit max iterations in finding nearest positive matrix
 #' @return a matrix with dimension p by p, NPD estimator
-#' @examples covNPDmat(matrix(rnorm(500),100,5)) 
+#' @examples covNPD(matrix(rnorm(500),100,5)) 
 #' @export
-covNPDmat <- function(data, eigenTol = 1e-06, convTol = 1e-07, psdTol = 1e-08, maxit = 1000L) {
-    .Call(`_robustcov_covNPDmat`, data, eigenTol, convTol, psdTol, maxit)
+covNPD <- function(data, eigenTol = 1e-06, convTol = 1e-07, psdTol = 1e-08, maxit = 1000L) {
+    .Call(`_robustcov_covNPD`, data, eigenTol, convTol, psdTol, maxit)
 }
 
 #' @name raltert

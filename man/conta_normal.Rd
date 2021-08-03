@@ -18,13 +18,16 @@ conta_normal(
 
 \item{Omega}{precision matrix of the normal}
 
-\item{byrow}{whether the comtamination happened by row? FALSE stand for cellwise}
+\item{byrow}{whether the contamination happened by row? FALSE stand for cellwise contamination}
 
 \item{cont_rate}{how many cells/rows are contaminated?}
 
 \item{mu}{mean of the contamination}
 
 \item{sd}{standard deviation of the contamination}
+}
+\value{
+a matrix of contaminated (multivariate) normal distributed data, row as sample
 }
 \description{
 This function samples normal distribution with normal contamination

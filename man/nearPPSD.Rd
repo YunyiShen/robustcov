@@ -17,6 +17,9 @@ nearPPSD(X, eigenTol = 1e-06, convTol = 1e-07, psdTol = 1e-08, maxit = 1000L)
 
 \item{maxit}{max iterations in finding nearest positive matrix}
 }
+\value{
+a matrix which is the nearest positive semi-definite matrix of input X
+}
 \description{
 This routine calculate the nearest positive semi0definite projection
 }

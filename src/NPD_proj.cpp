@@ -33,6 +33,7 @@ mat ProjPSD(const mat R, const int n, const float eigenTol) {
 //' @param convTol tolerance in cov, used in finding nearest positive matrix
 //' @param psdTol tolerance in psd, used in finding nearest positive matrix
 //' @param maxit max iterations in finding nearest positive matrix
+//' @return a matrix which is the nearest positive semi-definite matrix of input X
 //' @export
 // [[Rcpp::export]]
 arma::mat nearPPSD(arma::mat X, const float eigenTol = 1e-06, const float convTol = 1e-07, 

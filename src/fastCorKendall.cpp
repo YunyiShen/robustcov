@@ -34,14 +34,6 @@
  *
  */
 
-/*
- * adopted from package ccaPP due to Andreas Alfons
- *                KU Leuven
- */
-
-/*
- * 
- */
 
 #include <stdint.h>
 #include <stdlib.h>
